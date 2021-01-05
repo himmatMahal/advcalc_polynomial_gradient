@@ -13,9 +13,10 @@ class PolynomialGradientGUI:
     def __init__(self, main_window):
         self.main_window = main_window
         self.WIDTH = 600
-        self.HEIGHT = 200
+        self.HEIGHT = 250
 
         self.main_window.title('Gradient Visualizer')
+
         self.main_canvas = tk.Canvas(
             main_window,
             height=self.HEIGHT,
@@ -44,23 +45,39 @@ class PolynomialGradientGUI:
             height=75,
             relx=0.1,rely=0.2
         )
+
         self.function_entry = tk.Entry(self.main_canvas,bd=5)
         self.function_entry.place(
             width=250,
             height=75,
             relx=0.5,rely=0.2
         )
+
         self.submit_button = tk.Button(
             self.main_canvas,
             text='Create Gradient Plot',
             command=self.submit_command
         )
         self.submit_button.place(
-            width=200,
-            height=40,
-            anchor='n',
+            width=250,
+            height=75,
+            relx=0.1,rely=0.65
+        )
+
+        self.submitMsg = tk.StringVar()
+        self.submit_output = tk.Label(
+            self.main_canvas,
+            textvariable=self.submitMsg,
+            wraplength=240,
+            justify=tk.LEFT
+        )
+        self.submit_output.place(
+            width=250,
+            height=75,
             relx=0.5,rely=0.65
         )
+
+
 
     def submit_command(self):
         try:
@@ -96,11 +113,10 @@ class PolynomialGradientGUI:
             plt.xlabel("x")
             plt.title( "Gradient Vector Field of: f(x, y) = " + str(f) )
             plt.show()
-
+            self.submitMsg.set("Success")
         except Exception as e:
-            # TODO: print error messages on GUI window
             err = repr(e)
-            print(err)
+            self.submitMsg.set(err)
 
 
     def parse_polynomial(self, x, y):
