@@ -78,6 +78,8 @@ class PolynomialGradientGUI:
             # More info for numeric computation:
             # https://docs.sympy.org/latest/modules/numeric-computation.html
 
+            # TODO: make plot look cooler
+
             count = 40
             xyRange = (-5,5)
             # useful for count x count coordinates
