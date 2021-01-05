@@ -7,7 +7,7 @@ class PolynomialGradientGUI:
 
     ALLOWED_CHARS = [
         ' ', 'x', 'y', '*', '+', '1', '2', '3', '4', '5', '6', '7',
-        '8', '9', '0', '-',
+        '8', '9', '0', '-', '.',
     ]
 
     def __init__(self, main_window):
@@ -95,9 +95,7 @@ class PolynomialGradientGUI:
             # More info for numeric computation:
             # https://docs.sympy.org/latest/modules/numeric-computation.html
 
-            # TODO: make plot look cooler
-
-            count = 40
+            count = 70
             xyRange = (-5,5)
             # useful for count x count coordinates
             coords = np.linspace(xyRange[0] , xyRange[1], num=count)
@@ -108,7 +106,8 @@ class PolynomialGradientGUI:
 
             M = np.hypot(U, V) # length of arrow corresponds with color
 
-            plt.quiver( X, Y, U, V, M, scale=100 )
+            plt.style.use('Solarize_Light2')
+            plt.quiver( X, Y, U, V, M, minlength=2)
             plt.ylabel("y")
             plt.xlabel("x")
             plt.title( "Gradient Vector Field of: f(x, y) = " + str(f) )
