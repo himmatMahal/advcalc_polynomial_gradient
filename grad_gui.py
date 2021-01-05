@@ -63,7 +63,6 @@ class PolynomialGradientGUI:
         )
 
     def submit_command(self):
-        f = None
         try:
             x, y = sp.symbols('x y')
             f = self.parse_polynomial(x, y)
@@ -97,7 +96,9 @@ class PolynomialGradientGUI:
             plt.show()
 
         except Exception as e:
+            # TODO: print error messages on GUI window
             err = repr(e)
+            print(err)
 
 
     def parse_polynomial(self, x, y):
